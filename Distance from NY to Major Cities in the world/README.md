@@ -1,0 +1,1 @@
+A Web application that displays the distance from NY to major cities in the world. The Web page allows for the user to enter a city and in case the city is in the server then the app displays the distance from NY to the input city otherwise it display "No city found".
