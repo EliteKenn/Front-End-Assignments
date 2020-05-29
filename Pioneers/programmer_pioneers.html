@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Live Search</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            
+            <script type="text/javascript">
+                function runjQuery(){
+                    
+                    //reading input search text
+                    
+                    var inputSearch = document.getElementById("searchTxtBx").value.trim();
+                    
+                    if(inputSearch != "")
+                    {
+                        $.ajax(
+                            { //setup the parameters
+                        url:      "populateselect.php",
+                        data:     "searchKey=" +inputSearch,
+                        success:  function(serverdata) {
+                       
+                            //writing server response in the placeholder
+                            $("#showselect").html(serverdata);
+                        }
+                        });
+                    }
+                    else{
+                        //clearing up the placeholder
+                        $("#showselect").text("");
+                        $("#showresult").text("");
+                    }
+                    
+                }//end of jQuery
+                
+                function showinfo(){
+                    //reading name,language
+                    var nameLangObject = document.getElementById("scientistList");
+                    var selectBio = nameLangObject.value;
+                    
+                    //getting the name and the language
+                    var nameLangObjValue = nameLangObject.options[nameLangObject.selectedIndex].text;
+                    
+                    var name = nameLangObjValue.split(", ")[0];
+                    var language = nameLangObjValue.split(", ")[1];
+                    
+                    //display all values in the placeholder
+                    $("#showresult").html("Name: " +name+"<br/><br/>" +
+                                          "Language: " +language +"<br/><br/>"+
+                                          "Bio: "+ selectBio);
+                }
+            </script>
+        </head>
+        <body>
+            <h2>Live Search Programmer Pioneers</h2>
+            Search: <input type="text" name = "searchTxtBx"
+            id="searchTxtBx" autofocus size="50" onkeyup="runjQuery();"/>
+            <p></p>
+            <div id = "showselect"></div>
+            <p></p>
+            <div id="showresult"></div>
+        </body>
+        
+    </html>
