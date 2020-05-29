@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Live Search of US Presidents</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script type="text/javascript">
+                function runjQuery(){
+                    //get input from user
+                    var inputSearch = document.getElementById("searchTxtBx").value.trim();
+                    
+                    //validation(if string isn't empty, process it)
+                    if(inputSearch != ""){
+                        //connect to the server
+                        $.ajax(
+                            {//set up parameters
+                                
+                                url: "Presidents.php",
+                                data: "searchKey=" + inputSearch,
+                                success: function(serverdata){
+                                    
+                                    $("#showselect").html(serverdata);
+                                }
+                            }
+                        );
+                        
+                        
+                    }
+                    else{
+                        //clearing up the placeholders
+                        $("#showselect").text("");
+                        $("#showresult").text("");
+                    }
+                }//End of jQuery
+                
+                function showinfo(){
+                    //read name
+                    var nameObject = document.getElementById("presidentList");
+                    var selectValue = nameObject.value;
+                    var name = nameObject.options[nameObject.selectedIndex].text;
+                    
+                    //get party and picture
+                    var party = nameObject.value.split(",")[0];
+                    var picture = nameObject.value.split(",")[1];
+                    
+                    //display all values
+                    $("#showresult").html("<img src='"+picture+"'/><br/><br>" + "Name: " +name+"<br/><br/>" +
+ "Party: " + party);
+                }
+            </script>
+        </head>
+        <body>
+            <h2>Live Search of US Presidents</h2>
+            <p></p>
+            
+            Search:<input type="text" name="searchTxtBx" id="searchTxtBx"
+            autofocus onkeyup="runjQuery();"/>
+            <p></p>
+            <div id="showselect"></div>
+            <p></p>
+            <div id="showresult"></div>
+        </body>
+        
+        
+    </html>
