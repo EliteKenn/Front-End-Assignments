@@ -1,0 +1,1 @@
+A Web app that displays the distance (straight-line) between NYC and any major world's capital. Given a csv file, distance_NY_worldcaps_partial.csv, with a partial list of capital cities around the world and the corresponding distance to NY. The user picks a city and the app will "automatically" display the distance
