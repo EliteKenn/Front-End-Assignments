@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bronx Zoo App</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            function runjQuery() {
+                var selectAnimal = document.getElementById("animalList").value;
+                
+                if(selectAnimal != "") {
+                    $.ajax(
+                        {
+                            url:    "Zoo.php",
+                            data:   "animalKey="+selectAnimal,
+                            success: function(serverdata) {
+                                $("#showselect").html(serverdata);
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Please select an animal");
+                    $("#showselect").text("");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>Bronx Zoo App</h2>
+        Animal: <select id="animalList" onchange="runjQuery()">
+                <option value="">Select an animal</option>
+                <option value="Aardvark">Aardvark</option>
+                <option value="African Wild Dog">African Wild Dog</option>
+                <option value="Aldabra Tortoise">Aldabra Tortoise</option>
+                <option value="American Alligator">American Alligator</option>
+                <option value="American Bison">American Bison</option>
+                <option value="Amur Tiger">Amur Tiger</option>
+                <option value="Anaconda">Anaconda</option>
+                <option value="Andean Condor">Andean Condor</option>
+                <option value="Asian Elephant">Asian Elephant</option>
+                <option value="Baby Doll Sheep">Baby Doll Sheep</option>
+                <option value="Bald Eagle">Bald Eagle</option>
+                <option value="Barred Owl">Barred Owl</option>
+                <option value="Blue Iguana">Blue Iguana</option>
+                <option value="Boer Goat">Boer Goat</option>
+                <option value="California Sea Lion">California Sea Lion</option>
+                <option value="Caribbean Flamingo">Caribbean Flamingo</option>
+                <option value="Chinchilla">Chinchilla</option>
+                <option value="Collared Lemur">Collared Lemur</option>
+                <option value="Coquerel Sifaka">Coquerel Sifaka</option>
+                <option value="Cuban Amazon Parrot">Cuban Amazon Parrot</option>
+                <option value="Ebony Langur">Ebony Langur</option>
+                <option value="Fennec Fox">Fennec Fox</option>
+                <option value="Fossa">Fossa</option>
+                <option value="Gelada">Gelada</option>
+                <option value="Giant Anteater">Giant Anteater</option>
+                <option value="Giraffe">Giraffe</option>
+                <option value="Gorilla">Gorilla</option>
+                <option value="Grizzly Bear">Grizzly Bear</option>
+                <option value="Henkel Leaf-tailed Gecko">Henkel Leaf-tailed Gecko</option>
+                <option value="Indian Gharial">Indian Gharial</option>
+                <option value="Indian Rhinoceros">Indian Rhinoceros</option>
+                <option value="King Cobra">King Cobra</option>
+                <option value="King Vulture">King Vulture</option>
+                <option value="Komodo Dragon">Komodo Dragon</option>
+                <option value="Linne Two-toed Sloth">Linne Two-toed Sloth</option>
+                <option value="Lion">Lion</option>
+                <option value="Little Penguin">Little Penguin</option>
+                <option value="Madagascar Tree Boa">Madagascar Tree Boa</option>
+                <option value="Magellanic Penguin">Magellanic Penguin</option>
+                <option value="Malayan Tapir">Malayan Tapir</option>
+                <option value="Malayan Tiger">Malayan Tiger</option>
+                <option value="Matschies Tree Kangaroo">Matschies Tree Kangaroo</option>
+                <option value="Mini Donkey">Mini Donkey</option>
+                <option value="Monarch Butterfly">Monarch Butterfly</option>
+                <option value="Nile crocodile">Nile crocodile</option>
+                <option value="North American Porcupine">North American Porcupine</option>
+                <option value="Nubian Ibex">Nubian Ibex</option>
+                <option value="Okapi">Okapi</option>
+                <option value="Poison Dart Frog">Poison Dart Frog</option>
+                <option value="Pygmy Marmoset">Pygmy Marmoset</option>
+                <option value="Radiated Tortoise">Radiated Tortoise</option>
+                <option value="Red Panda">Red Panda</option>
+                <option value="Red Ruffed Lemur">Red Ruffed Lemur</option>
+                <option value="Ring-tailed Lemur">Ring-tailed Lemur</option>
+                <option value="Ring-tailed Mongoose">Ring-tailed Mongoose</option>
+                <option value="Rock Hyrax">Rock Hyrax</option>
+                <option value="Small Clawed Asian Otter">Small Clawed Asian Otter</option>
+                <option value="Snow Leopard">Snow Leopard</option>
+                <option value="Snowy Owl">Snowy Owl</option>
+                <option value="Southern White-faced Owl">Southern White-faced Owl</option>
+                <option value="Southern White Rhinocerous">Southern White Rhinocerous</option>
+                <option value="Squirrel Monkey">Squirrel Monkey</option>
+                <option value="Tufted Puffin">Tufted Puffin</option>
+                <option value="White Cheeked Gibbon">White Cheeked Gibbon</option>
+                <option value="White-throated Bee Eater">White-throated Bee Eater</option>
+                <option value="Zebra">Zebra</option>
+            </select>
+            <p></p>
+        <div id="showselect"></div>
+    </body>
+</html>
