@@ -1,0 +1,1 @@
+Users presented with a list of instructors and after selecting one from the list the courses that instructor is teaching this semester is then shown. App access a csv file on the server to retrieve the course(s) for the selected instructor.
