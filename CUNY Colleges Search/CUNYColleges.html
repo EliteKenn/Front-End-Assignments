@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Live Search</title>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            
+            <script type="text/javascript">
+                function runjQuery(){
+                    
+                    //reading input search text
+                    
+                    var inputSearch = document.getElementById("searchTxtBx").value.trim();
+                    
+                    if(inputSearch != "")
+                    {
+                        $.ajax(
+                            { //setup the parameters
+                        url:      "CUNYColleges.php",
+                        data:     "searchKey=" +inputSearch,
+                        success:  function(serverdata) {
+                       
+                            //writing server response in the placeholder
+                            $("#showselect").html(serverdata);
+                        }
+                        });
+                    }
+                    else{
+                        //clearing up the placeholder
+                        $("#showselect").text("");
+                        $("#showresult").text("");
+                    }
+                    
+                }//end of jQuery
+                
+                function showinfo(){
+                    //reading name,language
+                    var nameLangObject = document.getElementById("cunyList");
+                    var collegeType = nameLangObject.value;
+                    
+                    //getting the name and the language
+                    var nameLangObjValue = nameLangObject.options[nameLangObject.selectedIndex].text;
+                    
+                    var college = nameLangObjValue.split(", ")[1];
+                    var website = nameLangObjValue.split(", ")[2];
+                    var address = nameLangObjValue.split(", ")[3];
+                    var city = nameLangObjValue.split(", ")[4];
+                    var state = nameLangObjValue.split(", ")[5];
+                    var zip = nameLangObjValue.split(", ")[6];
+                    var longitude = nameLangObjValue.split(", ")[7];
+                    var latititude = nameLangObjValue.split(", ")[8];
+                    var Phone = nameLangObjValue.split(", ")[9];
+                    
+                    //display all values in the placeholder
+                    $("#showresult").html("College Type: " +collegeType+"<br/><br/>" +
+                                          "College Name: " +college +"<br/><br/>"+
+                                          "College Website: "+ website+ "<br/><br/>"+
+                                          "College Address: "+ address+"<br/><br/>"+
+                                          "College City: "+ city +"<br/><br/>"+
+                                          "College State: "+ state+"<br/><br/>"+
+                                          "College Zip: "+zip +"<br/><br/>"+
+                                          "College Longtitude: "+ longitude+"<br/><br/>"+
+                                          "College Latitude: "+ latititude+"<br/><br/>"+
+                                          "College Phone: "+ Phone+"<br/><br/>");
+                }
+            </script>
+        </head>
+        <body>
+            <h2>Live Search Cuny Schools</h2>
+            Search: <input type="text" name = "searchTxtBx"
+            id="searchTxtBx" autofocus size="50" onkeyup="runjQuery();"/>
+            <p></p>
+            <div id = "showselect"></div>
+            <p></p>
+            <div id="showresult"></div>
+        </body>
+        
