@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>World Newspapers</title>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            function runjQuery() {
+                var selectRegion = document.getElementById("regionList").value;
+                
+                if(selectRegion != "") {
+                    $.ajax(
+                        {
+                            url:    "Newspaper.php",
+                            data:   "regionKey="+selectRegion,
+                            success: function(serverdata) {
+                                $("#showselect").html(serverdata);
+                            }
+                        }
+                    );
+                }
+                else {
+                    alert("Please select a region");
+                    $("#showselect").text("");
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <h2>World Newspapers Web Site</h2>
+            <table border="1">
+                <tr><th colspan="1">WNWS</th></tr>
+                <tr><th>Select a Region:
+                    <select id="regionList" onchange="runjQuery()">
+                        <option value="">Select a Region</option>
+                        <option value="all">All</option>
+                        <option value="North America">North America</option>
+                        <option value="South America">South America</option>
+                        <option value="Africa">Africa</option>
+                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
+                        <option value="Oceania">Oceania</option>
+                    </select>
+                </th></tr>
+            </table>
+            <p></p>
+        <div id="showselect"></div>
+    </body>
+</html>
