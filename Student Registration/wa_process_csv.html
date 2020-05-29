@@ -1,0 +1,55 @@
+<html>
+    <head>
+        <title>Student Registration</title>
+        
+        <script type = "text/javascript">
+            
+            function checkinputs(){
+            
+            var inputFName = document.getElementById("fnameTxtBx").value.trim();
+            var inputLName = document.getElementById("lnameTxtBx").value.trim();
+            var inputID = document.getElementById("idTxtBx").value.trim();
+            
+            //validation: invalid inputs
+            if(inputFName != "" && isNaN(inputFName)){
+                if(inputLName != "" && isNaN(inputLName)){
+                    if(inputID != "" && !isNaN(inputID) && inputID.length === 3){
+                        return true;
+                    }else{
+                        alert("Invalid id");
+                        return false;
+                    }
+                }else{
+                    alert("Invalid last name");
+                    return false;
+                }
+            }else{
+                alert("Invalid first name");
+                return false;
+            }
+            }
+        </script>
+    </head>
+    
+    <body>
+        <h2>Student Registration</h2>
+        <form action="wa_process_csv.php" onsubmit="return checkinputs();">
+            First Name: <input type = "text" id="fnameTxtBx"
+            name="fnameTxtBx" required autofocus/>
+            &nbsp;&nbsp
+            <form action="wa_process_csv.php">
+            Last Name: <input type = "text" id="lnameTxtBx"
+            name="lnameTxtBx" required autofocus/>
+            <p>
+                ID: <input type = "text" id = "idTxtBx"
+                name="idTxtBx" required placeholder="3-digit only"/>
+            </p>
+            
+            <p>
+                <input type="submit" value="Register">&nbsp;&nbsp;
+                <input type="reset" value="Clear values"/>
+            </p>
+        </form>
+        
+    </body>
+</html>
