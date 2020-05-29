@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>World Capital Distance</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script type = "text/javascript">
+            function populateselect(){
+                
+                $.ajax(
+                    {
+                     //set up the parameters
+                     
+                     url:       "DistanceCapital.php",
+                     success:   function(serverdata){
+                        $("#selectplaceholder").html(serverdata);
+                     }
+                    
+                    
+                    })
+                
+            }//end of populateselect() function
+            
+            function getdistance(){
+                //reading the value of the selected option
+                
+                var selectdistance = document.getElementById("capitalList").value;
+                
+                //splitting string select distance by comma
+                var distanceArray = selectdistance.split(",");
+                
+                var miles = distanceArray[0];
+                var km = distanceArray[1];
+                
+                //getting the capital
+                var obj = document.getElementById("capitalList");
+                var capcountry = obj.options[obj.selectedIndex].text;
+                
+                var capital = capcountry.split(", ")[0];
+                
+                $("#distanceplaceholder").html("The distance between from NY to " +capital + " is " +miles + " miles which corresponds to " +km + " kilometers");
+            }
+        </script>
+    </head>
+    
+    <body onload="populateselect();">
+        <h2>Distance (Miles/Kilometers) NY to the World Capital</h2>
+        <div id= "selectplaceholder"></div>
+        <p></p>
+        <div id="distanceplaceholder"></div>
+    </body>
+</html>
