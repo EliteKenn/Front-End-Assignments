@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>HW#10 LiveSearch CUNY Colleges With Location</title>
+            <!-- Download Google CDN jQuery -->
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<!--download Google maps API -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXpMDT8Snwtmb8NsTM7fi3QT00U2N5Kmg&callback=initMap"
+    async defer></script>
+            <script type="text/javascript">
+                function runjQuery(){
+                    //get input search text
+                    var inputSearch = document.getElementById("searchTxtBx").value.trim();
+                    
+                    if(inputSearch != ""){
+                        $.ajax({
+                            //set up the parameters for the connection
+                            url: "cuny_colleges_map.php",
+                            data:"searchKey="+inputSearch,
+                            success:function(serverdata){
+                                //write server's response to the placeholder
+                                $("#showresults").html(serverdata);
+                                
+                            }
+                            
+                        });
+                    }
+                    else{
+                        //clear up placeholders
+                        $("#showresults").text("");
+                        $("#mapplaceholder").text("");
+                    }
+                }//end of jQuery
+                
+                function showmap(){
+                    //getting the college's coordinates(latitude, longitude)
+                    var collegeName = document.getElementById("clickcollege").innerHTML;
+                    var collegeLatitude = document.getElementById("clat").innerHTML;
+                    var collegeLongitude = document.getElementById("clong").innerHTML;
+                    
+                    //create map and place it in div
+                    var newmap = new google.maps.Map(document.getElementById("mapplaceholder"));
+                    
+                    //setting the type of map: roadmap
+                    newmap.setMapTypeId(google.maps.MapTypeId.ROADMAP);
+                    
+                    //centering all map markers
+                    var bounds = new google.maps.LatLngBounds();
+                    
+                    //Setting the coordinates to the selected college
+                    var collegeCoords = new google.maps.LatLng(collegeLatitude,collegeLongitude);
+                    
+                    //create marker
+                    var marker = new google.maps.Marker({
+                        
+                        position: collegeCoords,
+                        label: collegeName,
+                        map: newmap
+                    });
+                    //set location
+                    var loc = new google.maps.LatLng(marker.position.lat(),marker.posisiton.lng());
+                    bounds.extend(loc);
+                    
+                    //set the center of the map
+                    newmap.setCenter(collegeCoords);
+                    
+                    ////autozoom
+                    //newmap.fitBounds(bounds);
+                    
+                    //setting the zoom
+                    newmap.setZoom(13);
+                    
+                    //autocenter
+                    newmap.panToBounds(bounds);
+                }
+            </script>
+        </head>
+        <body>
+            <h2>LiveSearch CUNY Colleges With Location<small>(Click on College name to show map)</small>: CUNY Colleges</h2>
+            Search:<input type= "text" id="searchTxtBx"
+            autofocus size="70" onkeyup="runjQuery();"/>
+            <p></p>
+            <div id="showresults"></div>
+            <p></p>
+            <div id="showmap" style = "width:100%; height: 500px"></div>
+            <div id ="mapplaceholder"></div>
+        </body>
+    </html>
