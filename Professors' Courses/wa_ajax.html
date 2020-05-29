@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Web Application using Ajax1</title>
+
+        <script type = "text/javascript">
+            function populateinstructors(){
+                //create object XMLHttpRequest
+                if(window.XMLHttpRequest) var XHRobject = new XMLHttpRequest();
+                else XHRobject = new ActiveXObject("Microsoft.XMLHTTP"); //for older IE browsers
+                
+                //opening connection to the server's program that populates a select amount with a list of instructors
+                XHRobject.open("GET","populateselect.php",true);
+                XHRobject.send(null);
+                
+                //checking for the communication
+                XHRobject.onreadystatechange = function()
+                {
+                    if(XHRobject.readyState == 4 && XHRobject.status == 200)
+                    {
+                        
+                        //getting the server's response and writing it on the placeholder
+                        document.getElementById("instructorList").innerHTML = XHRobject.responseText;
+                    }
+                }
+            }//end of populateinstructors() function
+            
+            function showcourses(){
+                //read the value of the selected instructor
+                var courses = document.getElementById("facultyList").value;
+                
+                document.getElementById("showcourses").innerHTML = "Courses:<p>" + courses +"</p>";
+                
+            }
+        </script>
+    </head>
+    <body onload = "populateinstructors();">
+        <h2>Web Application using Ajax</h2>
+        <!-- creating placeholders for faculty list and courses -->
+        <div id = "instructorList"></div>
+        <p></p>
+        <div id = "showcourses"></div>
+    </body>
+<!--    http://localhost/wa_ajax_query/wa_ajax.html-->
+    
+</html>

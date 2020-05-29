@@ -1,0 +1,62 @@
+<html>
+ <head>
+ <title>Web Application using Ajax - Intro</title>
+<!-- downloading jquery from Google CDN -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+  function populateinstructors()
+
+  {
+
+     //starting ajax
+
+     jQuery.ajax(
+
+    {
+
+           url: "populateinstructors.php",
+
+          success: function(response)
+
+         {
+
+             $("#instructorList").html(response);
+
+         }
+
+    });
+
+//end of function populateinstructors()
+
+
+function getcourses()
+
+{
+
+      //read the value of the selected instructor
+
+      var courses = document.getElementById("facultyList").value;
+
+
+      //writing courses on the second placeholder
+
+      document.getElementById("showcourses").innerHTML = "Courses: <p>" + courses +"          </p>";
+
+}
+ }//end of function getcourses()
+ </script>
+ </head>
+ <body onload="populateinstructors();">
+ <h2>Web Application using jQuery - Intro</h2>
+ <!-- creating a placeholder -->
+ <div id="instructorList"></div>
+ <p></p>
+ <div id="showcourses"></div>
+ </body>
+</html>
+
+<!--http://localhost/wa_ajax_query/wa_jquery.html-->
