@@ -5,7 +5,8 @@ is shown in the location field automatically and if the user clicks on it then o
 
 The name of the animal, its location, and the corresponding webpage are found in the given csv file
 
- Used jQuery to automatically populate the animal <select> elements
+Used jQuery to automatically populate the animal <select> elements
  
-Used PHP as the server-side programming language to access the file or database and retrieve the value of the
+ 
+Used PHP as the server-side programming language to access the file in the database and retrieve the value of the
 “location” and the corresponding website for the selected animal
